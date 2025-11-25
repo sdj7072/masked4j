@@ -3,7 +3,8 @@
 [![Java CI with Gradle](https://github.com/sdj7072/masked4j/actions/workflows/ci.yml/badge.svg)](https://github.com/sdj7072/masked4j/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java](https://img.shields.io/badge/Java-17%2B-blue)](https://img.shields.io/badge/Java-17%2B-blue)
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.masked4j/masked4j-core)](https://central.sonatype.com/artifact/io.github.masked4j/masked4j-core)
+[![Maven Central (Core)](https://img.shields.io/maven-central/v/io.github.masked4j/masked4j-core?label=Maven%20Central%20(Core))](https://central.sonatype.com/artifact/io.github.masked4j/masked4j-core)
+[![Maven Central (Starter)](https://img.shields.io/maven-central/v/io.github.masked4j/masked4j-spring-boot-starter?label=Maven%20Central%20(Starter))](https://central.sonatype.com/artifact/io.github.masked4j/masked4j-spring-boot-starter)
 
 **Masked4J** is a lightweight, flexible Java library for masking sensitive data. It provides annotation-based masking for DTOs and seamless integration with Jackson and Spring Boot.
 
