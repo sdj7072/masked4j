@@ -14,7 +14,7 @@ Add the dependency and annotate your DTO. That's it!
 
 ```java
 public class UserDto {
-    @Masked(type = MaskType.EMAIL)
+    @Masked(MaskType.EMAIL)
     private String email; // "test@example.com" -> "te***@example.com"
 }
 ```
@@ -86,13 +86,13 @@ import io.github.masked4j.annotation.Masked;
 import io.github.masked4j.annotation.MaskType;
 
 public class UserDto {
-    @Masked(type = MaskType.STRING) // Default string masking
+    @Masked(MaskType.STRING) // Default string masking
     private String name;
 
-    @Masked(type = MaskType.EMAIL)
+    @Masked(MaskType.EMAIL)
     private String email;
 
-    @Masked(type = MaskType.PHONE_NUMBER)
+    @Masked(MaskType.PHONE_NUMBER)
     private String phoneNumber;
 }
 ```
@@ -150,7 +150,7 @@ Masked4J supports recursive masking for nested objects and collections (List, Ma
 
 ```java
 public class UserResponse {
-    @Masked(type = MaskType.STRING)
+    @Masked(MaskType.STRING)
     private String username;
 
     private AddressDto address; // Fields inside AddressDto will be masked recursively
@@ -222,7 +222,7 @@ public class SSNMasker implements Masker {
 Apply it using `MaskType.CUSTOM`:
 
 ```java
-@Masked(type = MaskType.CUSTOM, masker = SSNMasker.class)
+@Masked(value = MaskType.CUSTOM, masker = SSNMasker.class)
 private String ssn;
 ```
 

@@ -23,7 +23,7 @@ public @interface Masked {
      *
      * @return the mask type
      */
-    MaskType type() default MaskType.STRING;
+    MaskType value() default MaskType.STRING;
 
     /**
      * The custom masker class to use when type is {@link MaskType#CUSTOM}.

@@ -148,19 +148,19 @@ public class MaskingTest {
     }
 
     static class UserDto {
-        @Masked(type = MaskType.STRING)
+        @Masked(MaskType.STRING)
         public String name;
 
-        @Masked(type = MaskType.EMAIL)
+        @Masked(MaskType.EMAIL)
         public String email;
 
-        @Masked(type = MaskType.CREDIT_CARD)
+        @Masked(MaskType.CREDIT_CARD)
         public String creditCard;
 
-        @Masked(type = MaskType.RESIDENT_REGISTRATION_NUMBER)
+        @Masked(MaskType.RESIDENT_REGISTRATION_NUMBER)
         public String rrn;
 
-        @Masked(type = MaskType.BUSINESS_REGISTRATION_NUMBER)
+        @Masked(MaskType.BUSINESS_REGISTRATION_NUMBER)
         public String brn;
 
         public String unmasked;

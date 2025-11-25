@@ -93,7 +93,7 @@ class MaskingEdgeCaseTest {
     }
 
     static class UserDto {
-        @Masked(type = MaskType.STRING)
+        @Masked(MaskType.STRING)
         String name;
 
         AddressDto address;
@@ -105,7 +105,7 @@ class MaskingEdgeCaseTest {
     }
 
     static class AddressDto {
-        @Masked(type = MaskType.ADDRESS)
+        @Masked(MaskType.ADDRESS)
         String fullAddress;
 
         public AddressDto(String fullAddress) {

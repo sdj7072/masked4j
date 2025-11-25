@@ -78,10 +78,10 @@ public class MaskingEngine {
                     Masked annotation = field.getAnnotation(Masked.class);
                     Masker masker;
 
-                    if (annotation.type() == MaskType.CUSTOM) {
+                    if (annotation.value() == MaskType.CUSTOM) {
                         masker = MaskerFactory.getMasker(annotation.masker());
                     } else {
-                        masker = MaskerFactory.getMasker(annotation.type());
+                        masker = MaskerFactory.getMasker(annotation.value());
                     }
 
                     if (value instanceof String) {

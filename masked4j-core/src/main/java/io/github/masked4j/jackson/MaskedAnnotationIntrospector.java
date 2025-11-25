@@ -21,10 +21,10 @@ public class MaskedAnnotationIntrospector extends NopAnnotationIntrospector {
         if (annotation != null) {
             try {
                 Masker masker;
-                if (annotation.type() == MaskType.CUSTOM) {
+                if (annotation.value() == MaskType.CUSTOM) {
                     masker = MaskerFactory.getMasker(annotation.masker());
                 } else {
-                    masker = MaskerFactory.getMasker(annotation.type());
+                    masker = MaskerFactory.getMasker(annotation.value());
                 }
                 return new MaskingSerializer(masker);
             } catch (Exception e) {

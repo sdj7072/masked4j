@@ -9,9 +9,8 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Factory class for creating and retrieving {@link Masker} instances.
  * <p>
- * This class delegates to {@link MaskerRegistry} to find the appropriate masker
- * class
- * and then instantiates it. It ensures that maskers are instantiated
+ * This class uses the {@link MaskType} enum to find the appropriate masker
+ * class and then instantiates it. It ensures that maskers are instantiated
  * efficiently.
  */
 public class MaskerFactory {
@@ -28,7 +27,7 @@ public class MaskerFactory {
      * @return the masker instance
      */
     public static Masker getMasker(MaskType type) {
-        Class<? extends Masker> maskerClass = MaskerRegistry.getMaskerClass(type);
+        Class<? extends Masker> maskerClass = type.getMaskerClass();
         return getMasker(maskerClass);
     }
 
