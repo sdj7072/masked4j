@@ -23,6 +23,9 @@ The library automatically registers a Jackson module. Just return the DTO from y
 
 **Java (Standalone)**:
 ```java
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.masked4j.Masked4J;
+
 ObjectMapper mapper = Masked4J.objectMapper();
 String json = mapper.writeValueAsString(new UserDto("test@example.com"));
 ```
@@ -95,6 +98,28 @@ public class UserDto {
 
 ### 2. Supported Mask Types
 
+You can use the `MaskType` enum to specify the masking strategy.
+
+```java
+public enum MaskType {
+    STRING,
+    EMAIL,
+    CREDIT_CARD,
+    NAME,
+    PHONE_NUMBER,
+    ADDRESS,
+    IP_ADDRESS,
+    RESIDENT_REGISTRATION_NUMBER,
+    BUSINESS_REGISTRATION_NUMBER,
+    DRIVERS_LICENSE,
+    PASSPORT,
+    BANK_ACCOUNT,
+    CUSTOM
+}
+```
+
+#### Masking Details
+
 | Type | Description | Example |
 | :--- | :--- | :--- |
 | `STRING` | Masks all but the first and last characters. | `secret` -> `s***t` |
@@ -130,6 +155,8 @@ public class UserResponse {
     private AddressDto address; // Fields inside AddressDto will be masked recursively
     
     private List<DeviceDto> devices; // Elements in the list will be masked
+    
+    private Map<String, UserDto> userMap; // Values in the map will be masked
 }
 ```
 
@@ -169,12 +196,23 @@ You can implement the `Masker` interface to define custom masking logic.
 public class SSNMasker implements Masker {
     @Override
     public String mask(String input) {
+        // 1. Null or Blank Check
         if (input == null || input.isBlank()) {
             return input;
         }
-        // Example: Mask all but last 4 digits
+
+        // 2. Length Validation
+        if (input.length() < 5) {
+             return input; // Or throw exception based on your policy
+        }
+
+        // 3. Regex/Format Validation (Optional)
+        if (!input.matches("\\d+")) {
+            // handle invalid format
+        }
+
+        // 4. Masking Logic (Mask all but last 4 digits)
         int length = input.length();
-        if (length <= 4) return "****";
         return "*".repeat(length - 4) + input.substring(length - 4);
     }
 }
