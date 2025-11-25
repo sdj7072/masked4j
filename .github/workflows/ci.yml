@@ -29,6 +29,8 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
       with:
+        gradle-home-cache-cleanup: false
+        gradle-home-cache-strict-match: false
         cache-disabled: true
 
     - name: Build with Gradle Wrapper
