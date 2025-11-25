@@ -1,0 +1,5 @@
+server:
+  port: 8080
+
+masked4j:
+  enabled: true # Set to false to disable masking
