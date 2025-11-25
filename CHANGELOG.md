@@ -28,3 +28,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Performance Optimization**: Refactored `MaskingEngine` to cache reflection results (`Field` and `Annotation`), significantly improving performance for repeated calls
 - **Internal Architecture**: Centralized masker instantiation logic in `MaskerFactory` to ensure thread safety and reduce object creation overhead
 - **Error Handling**: Replaced silent failure (printing stack traces) with `MaskingException` to allow applications to handle masking failures gracefully
+- **Refactoring**: Applied Strategy Pattern to `MaskType` enum, eliminating `MaskerRegistry` and improving cohesion
+- **Annotation Simplification**: Renamed `type` attribute to `value` in `@Masked`, allowing for cleaner syntax (e.g., `@Masked(MaskType.EMAIL)`)
+- **Build Configuration**: Updated project toolchain to Java 21 to support modern development environments and resolve build issues

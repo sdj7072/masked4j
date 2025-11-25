@@ -2,11 +2,14 @@
 
 [![Java CI with Gradle](https://github.com/sdj7072/masked4j/actions/workflows/ci.yml/badge.svg)](https://github.com/sdj7072/masked4j/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Java](https://img.shields.io/badge/Java-17%2B-blue)](https://img.shields.io/badge/Java-17%2B-blue)
+[![Java](https://img.shields.io/badge/Java-21%2B-blue)](https://img.shields.io/badge/Java-21%2B-blue)
 [![Maven Central (Core)](https://img.shields.io/maven-central/v/io.github.masked4j/masked4j-core?label=Maven%20Central%20(Core))](https://central.sonatype.com/artifact/io.github.masked4j/masked4j-core)
 [![Maven Central (Starter)](https://img.shields.io/maven-central/v/io.github.masked4j/masked4j-spring-boot-starter?label=Maven%20Central%20(Starter))](https://central.sonatype.com/artifact/io.github.masked4j/masked4j-spring-boot-starter)
 
-**Masked4J** is a lightweight, flexible Java library for masking sensitive data. It provides annotation-based masking for DTOs and seamless integration with Jackson and Spring Boot.
+Masked4J is a lightweight and extensible Java library that provides annotation-based masking for sensitive data, with seamless integration for Jackson and Spring Boot.
+
+Masked4J helps you mask sensitive data safely and consistently across your Java applications.
+It supports annotation-based masking, recursive processing, and full Spring Boot auto-configuration.
 
 ## 🚀 Quick Start
 
@@ -33,13 +36,14 @@ String json = mapper.writeValueAsString(new UserDto("test@example.com"));
 
 ## ✨ Features
 
-- **Annotation-based Masking**: Easily mark fields to be masked using `@Masked`.
-- **Jackson Integration**: Automatically masks fields during JSON serialization.
-- **Spring Boot Support**: Auto-configuration for zero-setup integration.
-- **Recursive Masking**: Automatically masks nested objects and collections.
-- **Extensible**: Create your own custom maskers by implementing the `Masker` interface.
+- **Annotation-based masking** (`@Masked`)
+- **Built-in mask types** (Email, RRN, Phone, IP, Credit Card, etc.)
+- **Custom maskers** via `Masker` interface
+- **Automatic Jackson masking** during serialization
+- **Spring Boot auto-configuration**
+- **Recursive masking** for objects, lists, and maps
 - **Compliance**: Adheres to standard masking policies (including Korean ISMS-P).
-- **Modern Java**: Built for Java 17+ and tested on JDK 21 (LTS).
+- **Modern Java**: Built for Java 21+ (LTS).
 
 ## 📦 Installation
 
@@ -141,7 +145,7 @@ public enum MaskType {
 > [!NOTE]
 > **Korean ISMS-P Compliance**
 >
-> The masking policies in this library are implemented in compliance with the **[ISMS-P Certification Criteria Guide (Nov 2023)](https://isms.kisa.or.kr/main/ispims/notice/)** regarding pseudonymization and masking standards.
+> The masking policies in this library are implemented in compliance with the **[Latest ISMS-P Pseudonymization Guidelines (2024)](https://isms.kisa.or.kr/main/ispims/notice/)** regarding pseudonymization and masking standards.
 
 ### 4. Advanced Usage
 
@@ -175,6 +179,8 @@ engine.mask(user); // Modifies the object in-place
 
 When you add the `masked4j-spring-boot-starter` dependency, the `MaskedAutoConfiguration` is automatically applied.
 
+> Masked4J registers a custom Jackson module (`MaskedModule`) that automatically masks fields annotated with `@Masked` during JSON serialization.
+
 **How it works:**
 1.  It registers a `MaskedModule` bean.
 2.  Spring Boot's `JacksonAutoConfiguration` automatically picks up this module.
@@ -192,6 +198,8 @@ masked4j:
 ## 🧩 Custom Maskers
 
 You can implement the `Masker` interface to define custom masking logic.
+
+Custom maskers can be used by specifying the class in the `@Masked` annotation.
 
 ```java
 public class SSNMasker implements Masker {
@@ -230,6 +238,9 @@ private String ssn;
 
 This repository includes a Spring Boot sample application.
 
+📂 **Examples**
+- Spring Boot Sample Application: [`/examples/spring-boot-sample`](examples/spring-boot-sample)
+
 **Run:**
 ```bash
 ./gradlew :examples:spring-boot-sample:bootRun
@@ -262,6 +273,9 @@ Contributions are welcome!
 - **Build**: `./gradlew build`
 - **Test**: `./gradlew test`
 - **Format**: The project uses standard Java coding conventions.
+
+If you find Masked4J useful, please consider giving the repository a ⭐!
+Your support helps the project grow.
 
 ## 📄 License
 

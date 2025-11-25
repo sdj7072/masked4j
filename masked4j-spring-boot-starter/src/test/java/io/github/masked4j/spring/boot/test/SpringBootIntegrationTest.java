@@ -21,7 +21,7 @@ public class SpringBootIntegrationTest {
     }
 
     static class TestDto {
-        @Masked(type = MaskType.EMAIL)
+        @Masked(MaskType.EMAIL)
         public String email;
 
         public String plain;

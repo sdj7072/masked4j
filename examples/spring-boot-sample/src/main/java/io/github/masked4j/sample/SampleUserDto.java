@@ -5,37 +5,37 @@ import io.github.masked4j.annotation.Masked;
 
 public class SampleUserDto {
 
-    @Masked(type = MaskType.STRING)
+    @Masked(MaskType.STRING)
     private String name;
 
-    @Masked(type = MaskType.EMAIL)
+    @Masked(MaskType.EMAIL)
     private String email;
 
-    @Masked(type = MaskType.PHONE_NUMBER)
+    @Masked(MaskType.PHONE_NUMBER)
     private String phoneNumber;
 
-    @Masked(type = MaskType.ADDRESS)
+    @Masked(MaskType.ADDRESS)
     private String address;
 
-    @Masked(type = MaskType.RESIDENT_REGISTRATION_NUMBER)
+    @Masked(MaskType.RESIDENT_REGISTRATION_NUMBER)
     private String rrn;
 
-    @Masked(type = MaskType.BUSINESS_REGISTRATION_NUMBER)
+    @Masked(MaskType.BUSINESS_REGISTRATION_NUMBER)
     private String brn;
 
-    @Masked(type = MaskType.DRIVERS_LICENSE)
+    @Masked(MaskType.DRIVERS_LICENSE)
     private String driversLicense;
 
-    @Masked(type = MaskType.PASSPORT)
+    @Masked(MaskType.PASSPORT)
     private String passport;
 
-    @Masked(type = MaskType.BANK_ACCOUNT)
+    @Masked(MaskType.BANK_ACCOUNT)
     private String bankAccount;
 
-    @Masked(type = MaskType.CREDIT_CARD)
+    @Masked(MaskType.CREDIT_CARD)
     private String creditCard;
 
-    @Masked(type = MaskType.IP_ADDRESS)
+    @Masked(MaskType.IP_ADDRESS)
     private String ipAddress;
 
     public SampleUserDto(String name, String email, String phoneNumber, String address, String rrn, String brn,
