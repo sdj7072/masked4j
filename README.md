@@ -317,6 +317,40 @@ curl http://localhost:8080/sample
 }
 ```
 
+## ⚡ Performance
+
+Masked4J is designed to be lightweight, but since it intercepts the serialization process to inspect and modify fields, there is an inherent overhead. We provide JMH benchmarks to transparently show this impact.
+
+### Benchmark Conditions
+-   **Hardware**: Apple M4 Pro, 24GB RAM
+-   **Java Version**: OpenJDK 21
+-   **Test Data**: `UserDto` with 6 masked fields (Name, Email, Phone, Credit Card, IP, Address)
+-   **Operations**: JSON Serialization (`ObjectMapper.writeValueAsString`)
+
+### Results
+
+![Benchmark Graph](docs/images/benchmark_graph.svg)
+
+| Benchmark | Mode | Score (ops/s) | Relative Speed |
+| :--- | :--- | :--- | :--- |
+| **Single Object** (Vanilla) | Throughput | ~6,300,000 | 100% |
+| **Single Object** (Masked) | Throughput | ~1,800,000 | ~28% |
+| **List (1000 items)** (Vanilla) | Throughput | ~7,000 | 100% |
+| **List (1000 items)** (Masked) | Throughput | ~1,600 | ~23% |
+
+### Interpretation
+1.  **Absolute Performance**: Even with masking enabled, the library achieves **1.8 million operations per second**. This means masking a single object takes approximately **0.5 microseconds (0.0005ms)**.
+2.  **Overhead Source**: The ~3-4x slowdown is primarily due to Reflection (field inspection) and String Manipulation (creating new masked strings), which are necessary for dynamic masking.
+3.  **Real-world Impact**: For a typical web API request that takes 20-50ms (due to DB queries, network latency, etc.), the overhead of masking (less than 0.001ms) is **negligible** and will not be a bottleneck.
+
+### Run Benchmarks Locally
+
+You can run the benchmarks yourself to verify performance on your machine:
+
+```bash
+./gradlew :masked4j-benchmark:jmh
+```
+
 ## 🤝 Contributing
 
 Contributions are welcome!
