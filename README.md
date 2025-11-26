@@ -51,12 +51,12 @@ String json = mapper.writeValueAsString(new UserDto("test@example.com"));
 
 **Spring Boot**:
 ```kotlin
-implementation("io.github.sdj7072:masked4j-spring-boot-starter:0.1.0")
+implementation("io.github.sdj7072:masked4j-spring-boot-starter:1.0.0")
 ```
 
 **Java (Core)**:
 ```kotlin
-implementation("io.github.sdj7072:masked4j-core:0.1.0")
+implementation("io.github.sdj7072:masked4j-core:1.0.0")
 ```
 
 ### Maven
@@ -66,7 +66,7 @@ implementation("io.github.sdj7072:masked4j-core:0.1.0")
 <dependency>
     <groupId>io.github.sdj7072</groupId>
     <artifactId>masked4j-spring-boot-starter</artifactId>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -75,7 +75,7 @@ implementation("io.github.sdj7072:masked4j-core:0.1.0")
 <dependency>
     <groupId>io.github.sdj7072</groupId>
     <artifactId>masked4j-core</artifactId>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -145,7 +145,7 @@ public enum MaskType {
 > [!NOTE]
 > **Korean ISMS-P Compliance**
 >
-> The masking policies in this library are implemented in compliance with the **[Latest ISMS-P Pseudonymization Guidelines (2024)](https://isms.kisa.or.kr/main/ispims/notice/)** regarding pseudonymization and masking standards.
+> The masking policies in this library are implemented in compliance with the **[ISMS-P Pseudonymization Guidelines (2023.11)](https://isms.kisa.or.kr/main/ispims/notice/)** regarding pseudonymization and masking standards.
 
 ### 4. Advanced Usage
 
