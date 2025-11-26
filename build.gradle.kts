@@ -90,5 +90,13 @@ subprojects {
                 }
             }
         }
+
+        configure<SigningExtension> {
+            val signingKey = System.getenv("GPG_SIGNING_KEY")
+            val signingPassword = System.getenv("GPG_SIGNING_PASSWORD")
+            if (!signingKey.isNullOrEmpty() && !signingPassword.isNullOrEmpty()) {
+                useInMemoryPgpKeys(signingKey, signingPassword)
+            }
+        }
     }
 }
