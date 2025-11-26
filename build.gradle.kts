@@ -87,17 +87,17 @@ subprojects {
                 }
             }
         }
-        }
         repositories {
             maven {
-                name = "OSSRH"
-                url = uri("https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/")
+                name = "CentralPortal"
+                url = uri("https://central.sonatype.com/api/v1/publisher")
                 credentials {
                     username = System.getenv("OSSRH_USERNAME")
                     password = System.getenv("OSSRH_PASSWORD")
                 }
             }
         }
+    }
     }
 
     configure<SigningExtension> {
