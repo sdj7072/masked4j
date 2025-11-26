@@ -29,7 +29,7 @@ jobs:
         run: ./gradlew build --no-daemon
 
       - name: Publish to Maven Central
-        run: ./gradlew publishToSonatype closeAndReleaseSonatypeStagingRepository --no-daemon
+        run: ./gradlew publish --no-daemon
         env:
           RELEASE_VERSION: ${{ github.ref_name }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
