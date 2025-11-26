@@ -25,7 +25,7 @@ subprojects {
     apply(plugin = "java-library")
     apply(plugin = "io.spring.dependency-management")
 
-    if (project.name != "spring-boot-sample") {
+    if (project.name == "masked4j-core" || project.name == "masked4j-spring-boot-starter") {
         apply(plugin = "maven-publish")
         apply(plugin = "signing")
     }
@@ -61,7 +61,7 @@ subprojects {
         "testImplementation"("org.assertj:assertj-core:3.24.2")
     }
     
-    if (project.name != "spring-boot-sample") {
+    if (project.name == "masked4j-core" || project.name == "masked4j-spring-boot-starter") {
         configure<PublishingExtension> {
             publications {
                 create<MavenPublication>("maven") {
