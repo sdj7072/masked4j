@@ -12,7 +12,7 @@ plugins {
 allprojects {
     group = "io.github.sdj7072"
     val releaseVersion = System.getenv("RELEASE_VERSION")
-    version = releaseVersion?.removePrefix("v") ?: "0.1.0-SNAPSHOT"
+    version = if (!releaseVersion.isNullOrEmpty()) releaseVersion.removePrefix("v") else "0.1.0-SNAPSHOT"
 
     repositories {
         mavenCentral()
@@ -66,6 +66,7 @@ subprojects {
             publications {
                 create<MavenPublication>("maven") {
                     from(components["java"])
+                    version = project.version.toString()
                     pom {
                         name.set(project.name)
                         description.set("A lightweight, flexible Java library for masking sensitive data.")
