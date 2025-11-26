@@ -58,6 +58,15 @@ subprojects {
     }
     
     if (project.name == "masked4j-core" || project.name == "masked4j-spring-boot-starter") {
+        val ossrhUsername = System.getenv("OSSRH_USERNAME")
+        val ossrhPassword = System.getenv("OSSRH_PASSWORD")
+        if (ossrhUsername != null) {
+            ext["mavenCentralUsername"] = ossrhUsername
+        }
+        if (ossrhPassword != null) {
+            ext["mavenCentralPassword"] = ossrhPassword
+        }
+
         apply(plugin = "com.vanniktech.maven.publish")
 
         configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
