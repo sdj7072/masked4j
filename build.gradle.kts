@@ -23,9 +23,12 @@ allprojects {
 
 subprojects {
     apply(plugin = "java-library")
-    apply(plugin = "maven-publish")
-    apply(plugin = "signing")
     apply(plugin = "io.spring.dependency-management")
+
+    if (project.name != "spring-boot-sample") {
+        apply(plugin = "maven-publish")
+        apply(plugin = "signing")
+    }
 
     configure<JavaPluginExtension> {
         withSourcesJar()
@@ -58,54 +61,55 @@ subprojects {
         "testImplementation"("org.assertj:assertj-core:3.24.2")
     }
     
-    configure<PublishingExtension> {
-        publications {
-            create<MavenPublication>("maven") {
-                from(components["java"])
-                pom {
-                    name.set(project.name)
-                    description.set("A lightweight, flexible Java library for masking sensitive data.")
-                    url.set("https://github.com/sdj7072/masked4j")
-                    licenses {
-                        license {
-                            name.set("MIT License")
-                            url.set("https://opensource.org/licenses/MIT")
-                        }
-                    }
-                    developers {
-                        developer {
-                            id.set("sdj7072")
-                            name.set("sdj7072")
-                            email.set("sdj7072@gmail.com")
-                        }
-                    }
-                    scm {
-                        connection.set("scm:git:git://github.com/sdj7072/masked4j.git")
-                        developerConnection.set("scm:git:ssh://github.com/sdj7072/masked4j.git")
+    if (project.name != "spring-boot-sample") {
+        configure<PublishingExtension> {
+            publications {
+                create<MavenPublication>("maven") {
+                    from(components["java"])
+                    pom {
+                        name.set(project.name)
+                        description.set("A lightweight, flexible Java library for masking sensitive data.")
                         url.set("https://github.com/sdj7072/masked4j")
+                        licenses {
+                            license {
+                                name.set("MIT License")
+                                url.set("https://opensource.org/licenses/MIT")
+                            }
+                        }
+                        developers {
+                            developer {
+                                id.set("sdj7072")
+                                name.set("sdj7072")
+                                email.set("sdj7072@gmail.com")
+                            }
+                        }
+                        scm {
+                            connection.set("scm:git:git://github.com/sdj7072/masked4j.git")
+                            developerConnection.set("scm:git:ssh://github.com/sdj7072/masked4j.git")
+                            url.set("https://github.com/sdj7072/masked4j")
+                        }
+                    }
+                }
+            }
+            repositories {
+                maven {
+                    name = "CentralPortal"
+                    url = uri("https://central.sonatype.com/api/v1/publisher")
+                    credentials {
+                        username = System.getenv("OSSRH_USERNAME")
+                        password = System.getenv("OSSRH_PASSWORD")
                     }
                 }
             }
         }
-        repositories {
-            maven {
-                name = "CentralPortal"
-                url = uri("https://central.sonatype.com/api/v1/publisher")
-                credentials {
-                    username = System.getenv("OSSRH_USERNAME")
-                    password = System.getenv("OSSRH_PASSWORD")
-                }
+
+        configure<SigningExtension> {
+            val signingKey = System.getenv("GPG_SIGNING_KEY")
+            val signingPassword = System.getenv("GPG_SIGNING_PASSWORD")
+            if (signingKey != null && signingPassword != null) {
+                useInMemoryPgpKeys(signingKey, signingPassword)
+                sign(extensions.getByType<PublishingExtension>().publications["maven"])
             }
-        }
-    }
-
-
-    configure<SigningExtension> {
-        val signingKey = System.getenv("GPG_SIGNING_KEY")
-        val signingPassword = System.getenv("GPG_SIGNING_PASSWORD")
-        if (signingKey != null && signingPassword != null) {
-            useInMemoryPgpKeys(signingKey, signingPassword)
-            sign(extensions.getByType<PublishingExtension>().publications["maven"])
         }
     }
 }
