@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0-SNAPSHOT] - 2025-11-26
+## [1.0.0] - 2025-11-26
 
 ### Added
 - **Recursive Masking**: `MaskingEngine` now supports automatic masking of nested objects
@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Passport Number (`PASSPORT`)
     - Bank Account (`BANK_ACCOUNT`)
 - **MaskerFactory**: Introduced a singleton factory for managing masker instances
+- **Logging Integration**: Added support for consistent JSON log masking using `logstash-logback-encoder` and SPI (Service Provider Interface)
 - **MaskingException**: Added a custom runtime exception for better error handling during masking operations
 
 ### Changed

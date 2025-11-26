@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- Use the standard LogstashEncoder. It will pick up MaskedModule via SPI. -->
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <!-- Pretty print for better readability in console -->
+            <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
+            <findAndRegisterJacksonModules>true</findAndRegisterJacksonModules>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

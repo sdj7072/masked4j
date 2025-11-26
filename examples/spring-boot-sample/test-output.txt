@@ -1,0 +1,62 @@
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.0)
+
+{
+  "@timestamp" : "2025-11-26T09:36:31.350144+09:00",
+  "@version" : "1",
+  "message" : "Starting LogbackIntegrationTest using Java 21.0.8 with PID 22944 (started by p042890 in /Users/p042890/projects/workspace-antigravity/masked4j/examples/spring-boot-sample)",
+  "logger_name" : "io.github.masked4j.sample.LogbackIntegrationTest",
+  "thread_name" : "Test worker",
+  "level" : "INFO",
+  "level_value" : 20000
+}
+{
+  "@timestamp" : "2025-11-26T09:36:31.353806+09:00",
+  "@version" : "1",
+  "message" : "No active profile set, falling back to 1 default profile: \"default\"",
+  "logger_name" : "io.github.masked4j.sample.LogbackIntegrationTest",
+  "thread_name" : "Test worker",
+  "level" : "INFO",
+  "level_value" : 20000
+}
+{
+  "@timestamp" : "2025-11-26T09:36:31.63708+09:00",
+  "@version" : "1",
+  "message" : "Started LogbackIntegrationTest in 0.436 seconds (process running for 0.749)",
+  "logger_name" : "io.github.masked4j.sample.LogbackIntegrationTest",
+  "thread_name" : "Test worker",
+  "level" : "INFO",
+  "level_value" : 20000
+}
+WARNING: A Java agent has been loaded dynamically (/Users/p042890/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.16/4a451ee6484abac3a498df0f3b33ed00a6fced4d/byte-buddy-agent-1.14.16.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+{
+  "@timestamp" : "2025-11-26T09:36:31.946543+09:00",
+  "@version" : "1",
+  "message" : "User info",
+  "logger_name" : "io.github.masked4j.sample.LogbackIntegrationTest",
+  "thread_name" : "Test worker",
+  "level" : "INFO",
+  "level_value" : 20000,
+  "user" : {
+    "name" : "H***g",
+    "email" : "te***@example.com",
+    "phoneNumber" : "010-****-5678",
+    "address" : "123 Main St, Apt 4B",
+    "rrn" : "850209-*******",
+    "brn" : "123-45-*****",
+    "driversLicense" : "서울-12-******-10",
+    "passport" : "M1234****",
+    "bankAccount" : "123-456-****",
+    "creditCard" : "4558-12**-****-0116",
+    "ipAddress" : "192.168.***.1"
+  }
+}

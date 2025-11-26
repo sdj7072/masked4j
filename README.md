@@ -234,6 +234,56 @@ Apply it using `MaskType.CUSTOM`:
 private String ssn;
 ```
 
+## 📝 Logging Integration (Logback)
+
+Masked4J can be integrated with `logstash-logback-encoder` to ensure that sensitive data is masked in your JSON logs, maintaining consistency with your API responses.
+
+### Recipe
+
+**1. Add Dependency**
+
+```kotlin
+implementation("net.logstash.logback:logstash-logback-encoder:7.4")
+```
+
+**2. Create SPI Configuration**
+
+Create a file named `src/main/resources/META-INF/services/com.fasterxml.jackson.databind.Module` with the following content:
+
+```text
+io.github.masked4j.jackson.MaskedModule
+```
+
+This allows Jackson (used by Logback) to automatically discover and register the `MaskedModule`.
+
+**3. Configure `logback-spring.xml`**
+
+Enable module discovery in your `LogstashEncoder` configuration.
+
+```xml
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <!-- Enable SPI discovery -->
+            <findAndRegisterJacksonModules>true</findAndRegisterJacksonModules>
+            
+            <!-- Optional: Pretty print for local development -->
+            <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
+```
+
+Now, when you log an object annotated with `@Masked`, it will be automatically masked in the logs:
+
+```java
+log.info("User info: {}", userDto);
+```
+
 ## 📱 Sample Application
 
 This repository includes a Spring Boot sample application.
