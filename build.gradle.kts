@@ -6,6 +6,7 @@ import org.gradle.plugins.signing.SigningExtension
 plugins {
     id("org.springframework.boot") version "3.3.0" apply false
     id("io.spring.dependency-management") version "1.1.5" apply false
+    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
 
 allprojects {
@@ -15,6 +16,17 @@ allprojects {
 
     repositories {
         mavenCentral()
+    }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+            username.set(System.getenv("OSSRH_USERNAME"))
+            password.set(System.getenv("OSSRH_PASSWORD"))
+        }
     }
 }
 
@@ -81,16 +93,6 @@ subprojects {
                         developerConnection.set("scm:git:ssh://github.com/sdj7072/masked4j.git")
                         url.set("https://github.com/sdj7072/masked4j")
                     }
-                }
-            }
-        }
-        repositories {
-            maven {
-                name = "OSSRH"
-                url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-                credentials {
-                    username = System.getenv("OSSRH_USERNAME")
-                    password = System.getenv("OSSRH_PASSWORD")
                 }
             }
         }
