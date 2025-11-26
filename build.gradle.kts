@@ -98,7 +98,7 @@ subprojects {
             }
         }
     }
-    }
+
 
     configure<SigningExtension> {
         val signingKey = System.getenv("GPG_SIGNING_KEY")
