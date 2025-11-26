@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Logging Integration**: Added support for consistent JSON log masking using `logstash-logback-encoder` and SPI (Service Provider Interface)
 - **MaskingException**: Added a custom runtime exception for better error handling during masking operations
 - **Performance Benchmarks**: Added `masked4j-benchmark` module using JMH to measure serialization performance
-- **Benchmark Graph**: Added visualization of benchmark results in README
+- **Benchmark Graph**: Added visualization of benchmark results in README using Mermaid diagram
 
 ### Changed
 - **RRN Masking Policy**: Updated `RrnMasker` to mask last 7 digits (including gender) instead of 6, complying with ISMS-P guidelines (`850209-1234567` → `850209-*******`)

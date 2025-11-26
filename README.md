@@ -329,7 +329,15 @@ Masked4J is designed to be lightweight, but since it intercepts the serializatio
 
 ### Results
 
-![Benchmark Graph](docs/images/benchmark_graph.svg)
+### Results
+
+```mermaid
+xychart-beta
+    title "Serialization Throughput (ops/s)"
+    x-axis ["Vanilla (Single)", "Masked (Single)", "Vanilla (List)", "Masked (List)"]
+    y-axis "Operations per Second" 0 --> 7000000
+    bar [6300000, 1800000, 7000, 1600]
+```
 
 | Benchmark | Mode | Score (ops/s) | Relative Speed |
 | :--- | :--- | :--- | :--- |
