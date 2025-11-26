@@ -3,8 +3,8 @@
 [![Java CI with Gradle](https://github.com/sdj7072/masked4j/actions/workflows/ci.yml/badge.svg)](https://github.com/sdj7072/masked4j/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java](https://img.shields.io/badge/Java-21%2B-blue)](https://img.shields.io/badge/Java-21%2B-blue)
-[![Maven Central (Core)](https://img.shields.io/maven-central/v/io.github.masked4j/masked4j-core?label=Maven%20Central%20(Core))](https://central.sonatype.com/artifact/io.github.masked4j/masked4j-core)
-[![Maven Central (Starter)](https://img.shields.io/maven-central/v/io.github.masked4j/masked4j-spring-boot-starter?label=Maven%20Central%20(Starter))](https://central.sonatype.com/artifact/io.github.masked4j/masked4j-spring-boot-starter)
+[![Maven Central (Core)](https://img.shields.io/maven-central/v/io.github.sdj7072/masked4j-core?label=Maven%20Central%20(Core))](https://central.sonatype.com/artifact/io.github.sdj7072/masked4j-core)
+[![Maven Central (Starter)](https://img.shields.io/maven-central/v/io.github.sdj7072/masked4j-spring-boot-starter?label=Maven%20Central%20(Starter))](https://central.sonatype.com/artifact/io.github.sdj7072/masked4j-spring-boot-starter)
 
 Masked4J is a lightweight and extensible Java library that provides annotation-based masking for sensitive data, with seamless integration for Jackson and Spring Boot.
 
@@ -51,12 +51,12 @@ String json = mapper.writeValueAsString(new UserDto("test@example.com"));
 
 **Spring Boot**:
 ```kotlin
-implementation("io.github.masked4j:masked4j-spring-boot-starter:0.1.0")
+implementation("io.github.sdj7072:masked4j-spring-boot-starter:0.1.0")
 ```
 
 **Java (Core)**:
 ```kotlin
-implementation("io.github.masked4j:masked4j-core:0.1.0")
+implementation("io.github.sdj7072:masked4j-core:0.1.0")
 ```
 
 ### Maven
@@ -64,7 +64,7 @@ implementation("io.github.masked4j:masked4j-core:0.1.0")
 **Spring Boot**:
 ```xml
 <dependency>
-    <groupId>io.github.masked4j</groupId>
+    <groupId>io.github.sdj7072</groupId>
     <artifactId>masked4j-spring-boot-starter</artifactId>
     <version>0.1.0</version>
 </dependency>
@@ -73,7 +73,7 @@ implementation("io.github.masked4j:masked4j-core:0.1.0")
 **Java (Core)**:
 ```xml
 <dependency>
-    <groupId>io.github.masked4j</groupId>
+    <groupId>io.github.sdj7072</groupId>
     <artifactId>masked4j-core</artifactId>
     <version>0.1.0</version>
 </dependency>

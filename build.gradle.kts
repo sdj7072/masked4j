@@ -9,7 +9,7 @@ plugins {
 }
 
 allprojects {
-    group = "io.github.masked4j"
+    group = "io.github.sdj7072"
     val releaseVersion = System.getenv("RELEASE_VERSION")
     version = releaseVersion?.removePrefix("v") ?: "0.1.0-SNAPSHOT"
 
