@@ -38,7 +38,7 @@ It supports annotation-based masking, recursive processing, and full Spring Boot
 - [Contributing](#contributing)
 - [License](#license)
 
-## 🚀 Quick Start
+## Quick Start
 
 Add the dependency and annotate your DTO. That's it!
 
@@ -61,7 +61,7 @@ ObjectMapper mapper = Masked4J.objectMapper();
 String json = mapper.writeValueAsString(new UserDto("test@example.com"));
 ```
 
-## ✨ Features
+## Features
 
 - **Annotation-based masking** (`@Masked`)
 - **Built-in mask types** (Email, RRN, Phone, IP, Credit Card, etc.)
@@ -72,7 +72,7 @@ String json = mapper.writeValueAsString(new UserDto("test@example.com"));
 - **Compliance**: Adheres to standard masking policies (including Korean ISMS-P).
 - **Modern Java**: Built for Java 21+ (LTS).
 
-## 📦 Installation
+## Installation
 
 ### Gradle
 
@@ -106,7 +106,7 @@ implementation("io.github.sdj7072:masked4j-core:1.1.0")
 </dependency>
 ```
 
-## 🛠 Usage
+## Usage
 
 ### 1. Basic Usage
 
@@ -229,7 +229,7 @@ public class DocumentDto {
 
 > **Important:** `@MaskedPattern` is mutually exclusive with `@Masked`. If both annotations are present on the same field, a `MaskingConfigurationException` will be thrown.
 
-## 🍃 Spring Boot Integration
+## Spring Boot Integration
 
 When you add the `masked4j-spring-boot-starter` dependency, the `MaskedAutoConfiguration` is automatically applied.
 
@@ -249,7 +249,7 @@ masked4j:
   enabled: true # Set to false to disable masking globally (default: true)
 ```
 
-## 🧩 Custom Maskers
+## Custom Maskers
 
 You can implement the `Masker` interface to define custom masking logic.
 
@@ -288,7 +288,7 @@ Apply it using `MaskType.CUSTOM`:
 private String ssn;
 ```
 
-## 📝 Logging Integration (Logback)
+## Logging Integration (Logback)
 
 Masked4J can be integrated with `logstash-logback-encoder` to ensure that sensitive data is masked in your JSON logs, maintaining consistency with your API responses.
 
@@ -338,7 +338,7 @@ Now, when you log an object annotated with `@Masked`, it will be automatically m
 log.info("User info: {}", userDto);
 ```
 
-## 📱 Sample Application
+## Sample Application
 
 This repository includes a Spring Boot sample application.
 
@@ -371,7 +371,7 @@ curl http://localhost:8080/sample
 }
 ```
 
-## ⚡ Performance
+## Performance
 
 Masked4J is designed to be lightweight, but since it intercepts the serialization process to inspect and modify fields, there is an inherent overhead. We provide JMH benchmarks to transparently show this impact.
 
@@ -413,7 +413,7 @@ You can run the benchmarks yourself to verify performance on your machine:
 ./gradlew :masked4j-benchmark:jmh
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome!
 - **Build**: `./gradlew build`
@@ -423,7 +423,7 @@ Contributions are welcome!
 If you find Masked4J useful, please consider giving the repository a ⭐!
 Your support helps the project grow.
 
-## 🚨 Error Handling
+## Error Handling
 
 Masked4J provides robust error handling and debugging capabilities.
 
@@ -439,10 +439,10 @@ Exceptions now include detailed context:
 [Masked4J] Error masking field 'email' in class 'UserDto'. Value: 'invalid-email'
 ```
 
-## 📊 Code Coverage
+## Code Coverage
 
 [![Codecov Sunburst Graph](https://codecov.io/github/sdj7072/masked4j/graphs/sunburst.svg?token=LUNFC4NX68)](https://codecov.io/github/sdj7072/masked4j)
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
