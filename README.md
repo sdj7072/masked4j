@@ -12,6 +12,9 @@ Masked4J is a lightweight and extensible Java library that provides annotation-b
 Masked4J helps you mask sensitive data safely and consistently across your Java applications.
 It supports annotation-based masking, recursive processing, and full Spring Boot auto-configuration.
 
+> [!NOTE]
+> This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
+
 ## 🚀 Quick Start
 
 Add the dependency and annotate your DTO. That's it!
