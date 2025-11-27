@@ -78,12 +78,12 @@ String json = mapper.writeValueAsString(new UserDto("test@example.com"));
 
 **Spring Boot**:
 ```kotlin
-implementation("io.github.sdj7072:masked4j-spring-boot-starter:1.1.0")
+implementation("io.github.sdj7072:masked4j-spring-boot-starter:1.1.1")
 ```
 
 **Java (Core)**:
 ```kotlin
-implementation("io.github.sdj7072:masked4j-core:1.1.0")
+implementation("io.github.sdj7072:masked4j-core:1.1.1")
 ```
 
 ### Maven
@@ -93,7 +93,7 @@ implementation("io.github.sdj7072:masked4j-core:1.1.0")
 <dependency>
     <groupId>io.github.sdj7072</groupId>
     <artifactId>masked4j-spring-boot-starter</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 
@@ -102,7 +102,7 @@ implementation("io.github.sdj7072:masked4j-core:1.1.0")
 <dependency>
     <groupId>io.github.sdj7072</groupId>
     <artifactId>masked4j-core</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 
