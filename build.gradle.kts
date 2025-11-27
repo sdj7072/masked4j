@@ -8,6 +8,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.5" apply false
 
     id("com.vanniktech.maven.publish") version "0.30.0" apply false
+    id("com.diffplug.spotless") version "6.25.0" apply false
 }
 
 allprojects {
@@ -25,6 +26,16 @@ allprojects {
 subprojects {
     apply(plugin = "java-library")
     apply(plugin = "io.spring.dependency-management")
+    apply(plugin = "com.diffplug.spotless")
+
+    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+        java {
+            target("**/*.java")
+            googleJavaFormat() // Use default 2 spaces
+            trimTrailingWhitespace()
+            endWithNewline()
+        }
+    }
 
 
 

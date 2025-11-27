@@ -8,16 +8,16 @@
  :: Spring Boot ::                (v3.3.0)
 
 {
-  "@timestamp" : "2025-11-26T16:28:55.622289+09:00",
+  "@timestamp" : "2025-11-27T08:56:38.798412+09:00",
   "@version" : "1",
-  "message" : "Starting LogbackIntegrationTest using Java 21.0.8 with PID 70545 (started by p042890 in /Users/p042890/projects/workspace-antigravity/masked4j/examples/spring-boot-sample)",
+  "message" : "Starting LogbackIntegrationTest using Java 21.0.8 with PID 10700 (started by p042890 in /Users/p042890/projects/workspace-antigravity/masked4j/examples/spring-boot-sample)",
   "logger_name" : "io.github.masked4j.sample.LogbackIntegrationTest",
   "thread_name" : "Test worker",
   "level" : "INFO",
   "level_value" : 20000
 }
 {
-  "@timestamp" : "2025-11-26T16:28:55.625645+09:00",
+  "@timestamp" : "2025-11-27T08:56:38.801525+09:00",
   "@version" : "1",
   "message" : "No active profile set, falling back to 1 default profile: \"default\"",
   "logger_name" : "io.github.masked4j.sample.LogbackIntegrationTest",
@@ -26,9 +26,9 @@
   "level_value" : 20000
 }
 {
-  "@timestamp" : "2025-11-26T16:28:55.925109+09:00",
+  "@timestamp" : "2025-11-27T08:56:39.072212+09:00",
   "@version" : "1",
-  "message" : "Started LogbackIntegrationTest in 0.449 seconds (process running for 0.786)",
+  "message" : "Started LogbackIntegrationTest in 0.414 seconds (process running for 0.73)",
   "logger_name" : "io.github.masked4j.sample.LogbackIntegrationTest",
   "thread_name" : "Test worker",
   "level" : "INFO",
@@ -39,7 +39,7 @@ WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicA
 WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
 WARNING: Dynamic loading of agents will be disallowed by default in a future release
 {
-  "@timestamp" : "2025-11-26T16:28:56.256043+09:00",
+  "@timestamp" : "2025-11-27T08:56:39.391082+09:00",
   "@version" : "1",
   "message" : "User info",
   "logger_name" : "io.github.masked4j.sample.LogbackIntegrationTest",

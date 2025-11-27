@@ -11,24 +11,28 @@ import org.springframework.context.annotation.Bean;
 
 /**
  * Spring Boot auto-configuration for Masked4J.
- * <p>
- * Automatically registers the {@link MaskedModule} with the Jackson
- * {@link com.fasterxml.jackson.databind.ObjectMapper}.
+ *
+ * <p>Automatically registers the {@link MaskedModule} with the Jackson {@link
+ * com.fasterxml.jackson.databind.ObjectMapper}.
  */
 @AutoConfiguration
 @ConditionalOnClass(ObjectMapper.class)
 @EnableConfigurationProperties(MaskedProperties.class)
-@ConditionalOnProperty(prefix = "masked4j", name = "enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(
+    prefix = "masked4j",
+    name = "enabled",
+    havingValue = "true",
+    matchIfMissing = true)
 public class MaskedAutoConfiguration {
 
-    @Bean
-    @ConditionalOnMissingBean
-    /**
-     * Creates a {@link MaskedModule} bean.
-     *
-     * @return the masked module
-     */
-    public MaskedModule maskedModule() {
-        return new MaskedModule();
-    }
+  @Bean
+  @ConditionalOnMissingBean
+  /**
+   * Creates a {@link MaskedModule} bean.
+   *
+   * @return the masked module
+   */
+  public MaskedModule maskedModule() {
+    return new MaskedModule();
+  }
 }
