@@ -5,7 +5,10 @@ import com.fasterxml.jackson.databind.introspect.NopAnnotationIntrospector;
 import io.github.masked4j.Masker;
 import io.github.masked4j.annotation.MaskType;
 import io.github.masked4j.annotation.Masked;
+import io.github.masked4j.annotation.MaskedPattern;
 import io.github.masked4j.core.MaskerFactory;
+import io.github.masked4j.core.RegexMasker;
+import io.github.masked4j.exception.MaskingConfigurationException;
 import io.github.masked4j.exception.MaskingException;
 
 /**
@@ -17,14 +20,28 @@ import io.github.masked4j.exception.MaskingException;
 public class MaskedAnnotationIntrospector extends NopAnnotationIntrospector {
   @Override
   public Object findSerializer(Annotated am) {
-    Masked annotation = am.getAnnotation(Masked.class);
-    if (annotation != null) {
+    Masked masked = am.getAnnotation(Masked.class);
+    MaskedPattern maskedPattern = am.getAnnotation(MaskedPattern.class);
+
+    if (masked != null && maskedPattern != null) {
+      throw new MaskingConfigurationException(
+          String.format(
+              "Field '%s' has both @Masked and @MaskedPattern annotations. Only one masking annotation is allowed per field.",
+              am.getName()));
+    }
+
+    if (maskedPattern != null) {
+      return new MaskingSerializer(
+          new RegexMasker(maskedPattern.regex(), maskedPattern.replacement()));
+    }
+
+    if (masked != null) {
       try {
         Masker masker;
-        if (annotation.value() == MaskType.CUSTOM) {
-          masker = MaskerFactory.getMasker(annotation.masker());
+        if (masked.value() == MaskType.CUSTOM) {
+          masker = MaskerFactory.getMasker(masked.masker());
         } else {
-          masker = MaskerFactory.getMasker(annotation.value());
+          masker = MaskerFactory.getMasker(masked.value());
         }
         return new MaskingSerializer(masker);
       } catch (Exception e) {
