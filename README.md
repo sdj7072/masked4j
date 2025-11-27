@@ -7,13 +7,36 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java](https://img.shields.io/badge/Java-21%2B-blue)](https://img.shields.io/badge/Java-21%2B-blue)
 
+## Overview
+
 Masked4J is a lightweight and extensible Java library that provides annotation-based masking for sensitive data, with seamless integration for Jackson and Spring Boot.
 
 Masked4J helps you mask sensitive data safely and consistently across your Java applications.
 It supports annotation-based masking, recursive processing, and full Spring Boot auto-configuration.
 
+
 > [!NOTE]
 > This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Quick Start](#quick-start)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Basic Usage](#1-basic-usage)
+  - [Mask Types](#2-supported-mask-types)
+  - [ISMS-P Policy](#3-masking-policy-isms-p-compliance)
+  - [Advanced Usage](#4-advanced-usage)
+- [Spring Boot Integration](#spring-boot-integration)
+- [Custom Maskers](#custom-maskers)
+- [Logging Integration](#logging-integration-logback)
+- [Examples](#sample-application)
+- [Performance](#performance)
+- [Error Handling](#error-handling)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## 🚀 Quick Start
 
