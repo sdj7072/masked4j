@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 -   **Project Maintenance**: Added Dependabot (security only), Codecov integration, and SemVer policy.
+-   **Test Stability**: Refactored `LogbackIntegrationTest` to use JSON parsing for robust verification, eliminating flakiness due to formatting changes.
 
 ## [1.0.0] - 2025-11-25
 

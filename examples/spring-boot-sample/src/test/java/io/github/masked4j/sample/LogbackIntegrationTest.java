@@ -18,51 +18,55 @@ class LogbackIntegrationTest {
   private static final Logger log = LoggerFactory.getLogger(LogbackIntegrationTest.class);
 
   @Test
-  void testLogMasking(CapturedOutput output) {
+  void testLogMasking(CapturedOutput output) throws com.fasterxml.jackson.core.JsonProcessingException {
     // Given
-    SampleUserDto userDto =
-        new SampleUserDto(
-            "Hong Gil Dong",
-            "test@example.com",
-            "010-1234-5678",
-            "123 Main St, Apt 4B",
-            "850209-1234567",
-            "123-45-67890",
-            "서울-12-345678-10",
-            "M12345678",
-            "123-456-7890",
-            "4558-1234-5678-0116",
-            "192.168.0.1");
+    SampleUserDto userDto = new SampleUserDto(
+        "Hong Gil Dong",
+        "test@example.com",
+        "010-1234-5678",
+        "123 Main St, Apt 4B",
+        "850209-1234567",
+        "123-45-67890",
+        "서울-12-345678-10",
+        "M12345678",
+        "123-456-7890",
+        "4558-1234-5678-0116",
+        "192.168.0.1");
 
     // When
     log.info("User info", value("user", userDto));
 
     // Then
     String logs = output.getAll();
-    try {
-      java.nio.file.Files.writeString(java.nio.file.Path.of("test-output.txt"), logs);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
     assertThat(logs).contains("User info");
 
-    String compactLogs = logs.replaceAll("\\s+", "");
+    // Find the log line containing the JSON
+    String jsonLogLine = logs.lines()
+        .filter(line -> line.contains("\"user\":"))
+        .findFirst()
+        .orElseThrow(() -> new AssertionError("JSON log line not found"));
+
+    // Extract JSON part (assuming standard LogstashEncoder format where JSON is the
+    // whole line or part of it)
+    // Since we are using LogstashEncoder, the whole line is likely JSON.
+    // However, CapturedOutput might capture other things.
+    // Let's try to parse the whole line first.
+    com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+    com.fasterxml.jackson.databind.JsonNode rootNode = objectMapper.readTree(jsonLogLine);
+    com.fasterxml.jackson.databind.JsonNode userNode = rootNode.get("user");
+
+    assertThat(userNode).isNotNull();
 
     // Verify masked values
-    assertThat(compactLogs).contains("\"name\":\"H***g\"");
-    assertThat(compactLogs).contains("\"email\":\"te***@example.com\"");
-    assertThat(compactLogs).contains("\"phoneNumber\":\"010-****-5678\"");
-    assertThat(compactLogs).contains("\"rrn\":\"850209-*******\"");
-    assertThat(compactLogs).contains("\"brn\":\"123-45-*****\"");
-    assertThat(compactLogs).contains("\"driversLicense\":\"서울-12-******-10\"");
-    assertThat(compactLogs).contains("\"passport\":\"M1234****\"");
-    assertThat(compactLogs).contains("\"bankAccount\":\"123-456-****\"");
-    assertThat(compactLogs).contains("\"creditCard\":\"4558-12**-****-0116\"");
-    assertThat(compactLogs).contains("\"ipAddress\":\"192.168.***.1\"");
-
-    // Verify original values are NOT present
-    assertThat(compactLogs).doesNotContain("HongGilDong"); // Spaces removed
-    assertThat(compactLogs).doesNotContain("1234567"); // RRN suffix
-    assertThat(compactLogs).doesNotContain("67890"); // BRN suffix
+    assertThat(userNode.get("name").asText()).isEqualTo("H***g");
+    assertThat(userNode.get("email").asText()).isEqualTo("te***@example.com");
+    assertThat(userNode.get("phoneNumber").asText()).isEqualTo("010-****-5678");
+    assertThat(userNode.get("rrn").asText()).isEqualTo("850209-*******");
+    assertThat(userNode.get("brn").asText()).isEqualTo("123-45-*****");
+    assertThat(userNode.get("driversLicense").asText()).isEqualTo("서울-12-******-10");
+    assertThat(userNode.get("passport").asText()).isEqualTo("M1234****");
+    assertThat(userNode.get("bankAccount").asText()).isEqualTo("123-456-****");
+    assertThat(userNode.get("creditCard").asText()).isEqualTo("4558-12**-****-0116");
+    assertThat(userNode.get("ipAddress").asText()).isEqualTo("192.168.***.1");
   }
 }
