@@ -8,7 +8,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.5" apply false
 
     id("com.vanniktech.maven.publish") version "0.30.0" apply false
-    id("com.diffplug.spotless") version "6.25.0" apply false
+    id("com.diffplug.spotless") version "8.1.0" apply false
 }
 
 allprojects {
