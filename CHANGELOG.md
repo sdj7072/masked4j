@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **MaskingException**: Added a custom runtime exception for better error handling during masking operations
 - **Performance Benchmarks**: Added `masked4j-benchmark` module using JMH to measure serialization performance
 - **Benchmark Graph**: Added visualization of benchmark results in README using Mermaid diagram
+- **Code Style**: Enforced Google Java Format using Spotless plugin
+- **Code Coverage**: Integrated JaCoCo for test coverage reporting (HTML/XML)
 
 ### Changed
 - **RRN Masking Policy**: Updated `RrnMasker` to mask last 7 digits (including gender) instead of 6, complying with ISMS-P guidelines (`850209-1234567` → `850209-*******`)

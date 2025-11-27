@@ -27,6 +27,7 @@ subprojects {
     apply(plugin = "java-library")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "com.diffplug.spotless")
+    apply(plugin = "jacoco")
 
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         java {
@@ -35,6 +36,18 @@ subprojects {
             trimTrailingWhitespace()
             endWithNewline()
         }
+    }
+
+    tasks.withType<JacocoReport> {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+        }
+    }
+
+    tasks.named<Test>("test") {
+        useJUnitPlatform()
+        finalizedBy(tasks.named("jacocoTestReport"))
     }
 
 

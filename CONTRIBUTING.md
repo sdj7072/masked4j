@@ -91,7 +91,48 @@ If you find a bug or have a feature request, please open an issue on the [Issues
 
 ## Code Style
 
-Please follow the existing code style and conventions used in the project.
+This project follows the **Google Java Format** code style. We use **Spotless** to enforce this style and automatically format the code.
+
+### Automatic Formatting
+
+Before submitting a Pull Request, please run the following command to automatically format your code:
+
+```bash
+./gradlew spotlessApply
+```
+
+### Verification
+
+The build process includes a check to ensure all code is correctly formatted. If you push code that doesn't match the style, the build will fail. You can run this check locally:
+
+```bash
+./gradlew spotlessCheck
+```
+
+## Testing
+
+We use **JUnit 5** for testing and **JaCoCo** for code coverage.
+
+### Running Tests
+
+To run all tests:
+
+```bash
+./gradlew test
+```
+
+### Code Coverage
+
+To generate a code coverage report:
+
+```bash
+./gradlew jacocoTestReport
+```
+
+The HTML report will be generated at:
+`masked4j-core/build/reports/jacoco/test/html/index.html`
+
+We aim to maintain a high level of test coverage (currently >80%). Please ensure your changes are well-tested.
 
 ## License
 

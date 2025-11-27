@@ -5,6 +5,7 @@
 [![Java](https://img.shields.io/badge/Java-21%2B-blue)](https://img.shields.io/badge/Java-21%2B-blue)
 [![Maven Central (Core)](https://img.shields.io/maven-central/v/io.github.sdj7072/masked4j-core?label=Maven%20Central%20(Core))](https://central.sonatype.com/artifact/io.github.sdj7072/masked4j-core)
 [![Maven Central (Starter)](https://img.shields.io/maven-central/v/io.github.sdj7072/masked4j-spring-boot-starter?label=Maven%20Central%20(Starter))](https://central.sonatype.com/artifact/io.github.sdj7072/masked4j-spring-boot-starter)
+![Coverage](https://img.shields.io/badge/coverage-89%25-brightgreen)
 
 Masked4J is a lightweight and extensible Java library that provides annotation-based masking for sensitive data, with seamless integration for Jackson and Spring Boot.
 
