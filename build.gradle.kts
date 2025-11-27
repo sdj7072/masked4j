@@ -131,3 +131,36 @@ subprojects {
         }
     }
 }
+
+tasks.register("installGitHooks") {
+    doLast {
+        val hooksDir = file(".git/hooks")
+        hooksDir.mkdirs()
+        val preCommit = file(".git/hooks/pre-commit")
+        preCommit.writeText("""
+            #!/bin/sh
+            echo "Running spotlessApply..."
+            ./gradlew spotlessApply
+
+            STAGED_FILES=${'$'}(git diff --cached --name-only)
+            UNSTAGED_FILES=${'$'}(git diff --name-only)
+
+            CONFLICT=0
+            for file in ${'$'}STAGED_FILES; do
+                if echo "${'$'}UNSTAGED_FILES" | grep -q "^${'$'}file${'$'}"; then
+                    CONFLICT=1
+                    break
+                fi
+            done
+
+            if [ ${'$'}CONFLICT -eq 1 ]; then
+                echo "❌ Spotless formatted some staged files."
+                echo "Please review the changes, stage them (git add), and commit again."
+                exit 1
+            fi
+            exit 0
+        """.trimIndent())
+        preCommit.setExecutable(true)
+        println("Git pre-commit hook installed successfully.")
+    }
+}

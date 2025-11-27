@@ -7,6 +7,6 @@ public class MaskedModule extends SimpleModule {
   @Override
   public void setupModule(SetupContext context) {
     super.setupModule(context);
-    context.appendAnnotationIntrospector(new MaskedAnnotationIntrospector());
+    context.insertAnnotationIntrospector(new MaskedAnnotationIntrospector());
   }
 }
