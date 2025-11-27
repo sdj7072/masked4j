@@ -18,20 +18,22 @@ class LogbackIntegrationTest {
   private static final Logger log = LoggerFactory.getLogger(LogbackIntegrationTest.class);
 
   @Test
-  void testLogMasking(CapturedOutput output) throws com.fasterxml.jackson.core.JsonProcessingException {
+  void testLogMasking(CapturedOutput output)
+      throws com.fasterxml.jackson.core.JsonProcessingException {
     // Given
-    SampleUserDto userDto = new SampleUserDto(
-        "Hong Gil Dong",
-        "test@example.com",
-        "010-1234-5678",
-        "123 Main St, Apt 4B",
-        "850209-1234567",
-        "123-45-67890",
-        "서울-12-345678-10",
-        "M12345678",
-        "123-456-7890",
-        "4558-1234-5678-0116",
-        "192.168.0.1");
+    SampleUserDto userDto =
+        new SampleUserDto(
+            "Hong Gil Dong",
+            "test@example.com",
+            "010-1234-5678",
+            "123 Main St, Apt 4B",
+            "850209-1234567",
+            "123-45-67890",
+            "서울-12-345678-10",
+            "M12345678",
+            "123-456-7890",
+            "4558-1234-5678-0116",
+            "192.168.0.1");
 
     // When
     log.info("User info", value("user", userDto));
@@ -41,17 +43,19 @@ class LogbackIntegrationTest {
     assertThat(logs).contains("User info");
 
     // Find the log line containing the JSON
-    String jsonLogLine = logs.lines()
-        .filter(line -> line.contains("\"user\":"))
-        .findFirst()
-        .orElseThrow(() -> new AssertionError("JSON log line not found"));
+    String jsonLogLine =
+        logs.lines()
+            .filter(line -> line.contains("\"user\":"))
+            .findFirst()
+            .orElseThrow(() -> new AssertionError("JSON log line not found"));
 
     // Extract JSON part (assuming standard LogstashEncoder format where JSON is the
     // whole line or part of it)
     // Since we are using LogstashEncoder, the whole line is likely JSON.
     // However, CapturedOutput might capture other things.
     // Let's try to parse the whole line first.
-    com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+    com.fasterxml.jackson.databind.ObjectMapper objectMapper =
+        new com.fasterxml.jackson.databind.ObjectMapper();
     com.fasterxml.jackson.databind.JsonNode rootNode = objectMapper.readTree(jsonLogLine);
     com.fasterxml.jackson.databind.JsonNode userNode = rootNode.get("user");
 
