@@ -5,7 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2025-11-27
+## [1.1.0] - 2025-11-27
+
+### Added
+-   **`@MaskedPattern` Annotation**: Introduced regex-based custom masking without requiring a custom `Masker` class. Supports partial masking with group references ($1, $2, etc.).
+-   **Regex Pattern Caching**: Compiled regex patterns are cached for optimal performance.
+-   **Enhanced Error Handling**: Introduced `MaskingException` hierarchy (`ConfigurationException`, `ProcessException`).
+-   **Failure Strategies**: Added `FAIL_FAST`, `IGNORE`, `REPLACE_WITH_NULL` strategies for handling masking errors.
+-   **Contextual Logging**: Error messages now include field name, class name, and value context.
+
+### Changed
+-   **Dependency Management**: Removed explicit Jackson versions in `masked4j-core` to resolve conflicts.
+-   **Project Maintenance**: Added Dependabot (security only), Codecov integration, and SemVer policy.
+
+## [1.0.0] - 2025-11-25
 
 ### Added
 - **Recursive Masking**: `MaskingEngine` now supports automatic masking of nested objects

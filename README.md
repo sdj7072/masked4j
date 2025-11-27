@@ -55,12 +55,12 @@ String json = mapper.writeValueAsString(new UserDto("test@example.com"));
 
 **Spring Boot**:
 ```kotlin
-implementation("io.github.sdj7072:masked4j-spring-boot-starter:1.0.0")
+implementation("io.github.sdj7072:masked4j-spring-boot-starter:1.1.0")
 ```
 
 **Java (Core)**:
 ```kotlin
-implementation("io.github.sdj7072:masked4j-core:1.0.0")
+implementation("io.github.sdj7072:masked4j-core:1.1.0")
 ```
 
 ### Maven
@@ -70,7 +70,7 @@ implementation("io.github.sdj7072:masked4j-core:1.0.0")
 <dependency>
     <groupId>io.github.sdj7072</groupId>
     <artifactId>masked4j-spring-boot-starter</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -79,7 +79,7 @@ implementation("io.github.sdj7072:masked4j-core:1.0.0")
 <dependency>
     <groupId>io.github.sdj7072</groupId>
     <artifactId>masked4j-core</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -178,6 +178,33 @@ UserDto user = new UserDto("Bob", "bob@example.com");
 
 engine.mask(user); // Modifies the object in-place
 ```
+
+#### Custom Pattern Masking with `@MaskedPattern`
+For advanced use cases, you can define custom masking patterns using regular expressions directly on fields, without implementing a custom `Masker` class.
+
+```java
+import io.github.masked4j.annotation.MaskedPattern;
+
+public class DocumentDto {
+    // Full masking
+    @MaskedPattern(regex = "^.*$", replacement = "***")
+    private String secretCode;
+
+    // Partial masking with regex groups
+    // Example: "123-456-7890" -> "123-***-7890"
+    @MaskedPattern(regex = "(\\d{3})-\\d{3}-(\\d{4})", replacement = "$1-***-$2")
+    private String customPhoneFormat;
+    
+    // Internal employee ID (first 3 chars visible)
+    // Example: "EMP12345" -> "EMP*****"
+    @MaskedPattern(regex = "^(.{3}).*$", replacement = "$1*****")
+    private String employeeId;
+}
+```
+
+> **Performance Note:** Regex patterns are compiled once and cached for optimal performance.
+
+> **Important:** `@MaskedPattern` is mutually exclusive with `@Masked`. If both annotations are present on the same field, a `MaskingConfigurationException` will be thrown.
 
 ## 🍃 Spring Boot Integration
 
@@ -372,6 +399,22 @@ Contributions are welcome!
 
 If you find Masked4J useful, please consider giving the repository a ⭐!
 Your support helps the project grow.
+
+## 🚨 Error Handling
+
+Masked4J provides robust error handling and debugging capabilities.
+
+### Failure Strategies
+You can configure how the library behaves when masking fails:
+*   `FAIL_FAST` (Default): Throws a `MaskingException` immediately. Best for development.
+*   `IGNORE`: Logs a warning and returns the original value. Best for production stability.
+*   `REPLACE_WITH_NULL`: Sets the field to `null` (or empty string) to ensure no sensitive data leaks.
+
+### Debugging
+Exceptions now include detailed context:
+```text
+[Masked4J] Error masking field 'email' in class 'UserDto'. Value: 'invalid-email'
+```
 
 ## 📊 Code Coverage
 
