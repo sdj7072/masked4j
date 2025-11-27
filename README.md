@@ -1,7 +1,7 @@
 # Masked4J
 
 [![Java CI with Gradle](https://github.com/sdj7072/masked4j/actions/workflows/ci.yml/badge.svg)](https://github.com/sdj7072/masked4j/actions/workflows/ci.yml)
-![Coverage](https://img.shields.io/badge/coverage-89%25-brightgreen)
+[![Coverage](https://codecov.io/github/sdj7072/masked4j/graph/badge.svg?token=LUNFC4NX68)](https://codecov.io/github/sdj7072/masked4j)
 [![Maven Central (Core)](https://img.shields.io/maven-central/v/io.github.sdj7072/masked4j-core?label=Maven%20Central%20(Core))](https://central.sonatype.com/artifact/io.github.sdj7072/masked4j-core)
 [![Maven Central (Starter)](https://img.shields.io/maven-central/v/io.github.sdj7072/masked4j-spring-boot-starter?label=Maven%20Central%20(Starter))](https://central.sonatype.com/artifact/io.github.sdj7072/masked4j-spring-boot-starter)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -372,6 +372,10 @@ Contributions are welcome!
 
 If you find Masked4J useful, please consider giving the repository a ⭐!
 Your support helps the project grow.
+
+## 📊 Code Coverage
+
+[![Codecov Sunburst Graph](https://codecov.io/github/sdj7072/masked4j/graphs/sunburst.svg?token=LUNFC4NX68)](https://codecov.io/github/sdj7072/masked4j)
 
 ## 📄 License
 
