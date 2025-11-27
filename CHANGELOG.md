@@ -15,7 +15,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   **Contextual Logging**: Error messages now include field name, class name, and value context.
 
 ### Changed
--   **Dependency Management**: Removed explicit Jackson versions in `masked4j-core` to resolve conflicts.
 -   **Project Maintenance**: Added Dependabot (security only), Codecov integration, and SemVer policy.
 
 ## [1.0.0] - 2025-11-25
