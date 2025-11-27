@@ -19,10 +19,8 @@ import java.util.regex.PatternSyntaxException;
 /**
  * The core engine for processing objects and applying masking rules.
  *
- * <p>
- * This class scans objects for fields annotated with {@link
- * io.github.masked4j.annotation.Masked} and applies the appropriate masking
- * logic. It supports
+ * <p>This class scans objects for fields annotated with {@link
+ * io.github.masked4j.annotation.Masked} and applies the appropriate masking logic. It supports
  * recursive masking for nested objects.
  */
 public class MaskingEngine {
@@ -41,15 +39,13 @@ public class MaskingEngine {
   }
 
   /**
-   * Masks the fields of the given object based on
-   * {@link io.github.masked4j.annotation.Masked}
+   * Masks the fields of the given object based on {@link io.github.masked4j.annotation.Masked}
    * annotations.
    *
-   * <p>
-   * This method modifies the object in-place.
+   * <p>This method modifies the object in-place.
    *
    * @param object the object to mask
-   * @param <T>    the type of the object
+   * @param <T> the type of the object
    * @return the masked object
    */
   public <T> T mask(T object) {
@@ -181,10 +177,10 @@ public class MaskingEngine {
   /**
    * Applies regex-based masking to a string value.
    *
-   * @param value      the string value to mask
+   * @param value the string value to mask
    * @param annotation the @MaskedPattern annotation
-   * @param field      the field being masked (for error reporting)
-   * @param clazz      the class containing the field (for error reporting)
+   * @param field the field being masked (for error reporting)
+   * @param clazz the class containing the field (for error reporting)
    * @return the masked value
    */
   private String applyRegexMask(
@@ -194,19 +190,20 @@ public class MaskingEngine {
 
     try {
       // Get or compile pattern (with caching)
-      Pattern pattern = patternCache.computeIfAbsent(
-          regex,
-          r -> {
-            try {
-              return Pattern.compile(r);
-            } catch (PatternSyntaxException e) {
-              throw new MaskingConfigurationException(
-                  String.format(
-                      "Invalid regex pattern '%s' for field '%s' in class '%s': %s",
-                      r, field.getName(), clazz.getName(), e.getMessage()),
-                  e);
-            }
-          });
+      Pattern pattern =
+          patternCache.computeIfAbsent(
+              regex,
+              r -> {
+                try {
+                  return Pattern.compile(r);
+                } catch (PatternSyntaxException e) {
+                  throw new MaskingConfigurationException(
+                      String.format(
+                          "Invalid regex pattern '%s' for field '%s' in class '%s': %s",
+                          r, field.getName(), clazz.getName(), e.getMessage()),
+                      e);
+                }
+              });
 
       // Apply masking
       return pattern.matcher(value).replaceAll(replacement);
