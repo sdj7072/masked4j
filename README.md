@@ -333,7 +333,6 @@ Enable module discovery in your `LogstashEncoder` configuration.
 ```
 
 Now, when you log an object annotated with `@Masked`, it will be automatically masked in the logs:
-
 ```java
 log.info("User info: {}", userDto);
 ```
@@ -350,7 +349,16 @@ This repository includes a Spring Boot sample application.
 ./gradlew :examples:spring-boot-sample:bootRun
 ```
 
-**Test:**
+**Explore API (Swagger UI):**
+Open your browser to:
+[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
+**Test Endpoints:**
+- `GET /sample`: Default sample user
+- `GET /test/basic`: Test built-in maskers with custom input
+- `GET /test/pattern`: Test regex-based masking (`@MaskedPattern`)
+
+**CLI Test:**
 ```bash
 curl http://localhost:8080/sample
 ```
