@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 -   **Security**: Fixed a critical issue where fields annotated with `@MaskedPattern` were not masked during Jackson serialization (JSON output). They are now correctly masked using the specified regex and replacement.
 
+### Added
+-   **Swagger Integration**: Added `springdoc-openapi-starter-webmvc-ui` to the `spring-boot-sample` project for API documentation and testing.
+-   **Expanded Sample API**: Added new test endpoints (`/test/basic`, `/test/pattern`) to the sample application to demonstrate various masking scenarios and `@MaskedPattern` usage.
+
 ## [1.1.0] - 2025-11-27
 
 ### Added
