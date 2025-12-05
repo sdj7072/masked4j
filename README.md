@@ -230,6 +230,33 @@ public class DocumentDto {
 
 > **Important:** `@MaskedPattern` is mutually exclusive with `@Masked`. If both annotations are present on the same field, a `MaskingConfigurationException` will be thrown.
 
+#### Startup Validation (Optional)
+
+Validate `@MaskedPattern` annotations at application startup to catch invalid regex patterns early:
+
+```java
+import io.github.masked4j.core.Masked4JValidator;
+
+@Configuration
+public class Masked4JConfig {
+    @PostConstruct
+    public void validateMaskingPatterns() {
+        Masked4JValidator.validatePatterns(
+            UserDto.class, 
+            OrderDto.class,
+            PaymentDto.class
+        );
+    }
+}
+```
+
+If any pattern is invalid, a `MaskingConfigurationException` is thrown with details:
+```text
+Invalid @MaskedPattern configuration found:
+  - UserDto.customField: invalid regex '[invalid(' - Unclosed character class
+  - OrderDto.phone: replacement references group $3 but regex only has 2 groups
+```
+
 ## Spring Boot Integration
 
 When you add the `masked4j-spring-boot-starter` dependency, the `MaskedAutoConfiguration` is automatically applied.
