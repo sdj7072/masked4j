@@ -14,7 +14,7 @@ plugins {
 allprojects {
     group = "io.github.sdj7072"
     val releaseVersion = System.getenv("RELEASE_VERSION")
-    version = if (!releaseVersion.isNullOrEmpty()) releaseVersion.removePrefix("v") else "1.1.1"
+    version = if (!releaseVersion.isNullOrEmpty()) releaseVersion.removePrefix("v") else "1.2.0"
 
     repositories {
         mavenCentral()

@@ -4,6 +4,7 @@
 [![Coverage](https://codecov.io/github/sdj7072/masked4j/graph/badge.svg?token=LUNFC4NX68)](https://codecov.io/github/sdj7072/masked4j)
 [![Maven Central (Core)](https://img.shields.io/maven-central/v/io.github.sdj7072/masked4j-core?label=Maven%20Central%20(Core))](https://central.sonatype.com/artifact/io.github.sdj7072/masked4j-core)
 [![Maven Central (Starter)](https://img.shields.io/maven-central/v/io.github.sdj7072/masked4j-spring-boot-starter?label=Maven%20Central%20(Starter))](https://central.sonatype.com/artifact/io.github.sdj7072/masked4j-spring-boot-starter)
+[![Javadoc](https://javadoc.io/badge2/io.github.sdj7072/masked4j-core/javadoc.svg)](https://javadoc.io/doc/io.github.sdj7072/masked4j-core)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java](https://img.shields.io/badge/Java-21%2B-blue)](https://img.shields.io/badge/Java-21%2B-blue)
 
@@ -78,12 +79,12 @@ String json = mapper.writeValueAsString(new UserDto("test@example.com"));
 
 **Spring Boot**:
 ```kotlin
-implementation("io.github.sdj7072:masked4j-spring-boot-starter:1.1.1")
+implementation("io.github.sdj7072:masked4j-spring-boot-starter:1.2.0")
 ```
 
 **Java (Core)**:
 ```kotlin
-implementation("io.github.sdj7072:masked4j-core:1.1.1")
+implementation("io.github.sdj7072:masked4j-core:1.2.0")
 ```
 
 ### Maven
@@ -93,7 +94,7 @@ implementation("io.github.sdj7072:masked4j-core:1.1.1")
 <dependency>
     <groupId>io.github.sdj7072</groupId>
     <artifactId>masked4j-spring-boot-starter</artifactId>
-    <version>1.1.1</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -102,7 +103,7 @@ implementation("io.github.sdj7072:masked4j-core:1.1.1")
 <dependency>
     <groupId>io.github.sdj7072</groupId>
     <artifactId>masked4j-core</artifactId>
-    <version>1.1.1</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -247,7 +248,18 @@ You can control the library using `application.yml`:
 ```yaml
 masked4j:
   enabled: true # Set to false to disable masking globally (default: true)
+  failure-strategy: FAIL_FAST # Options: FAIL_FAST, IGNORE, REPLACE_WITH_NULL
 ```
+
+| Property | Description | Default |
+|:---------|:------------|:--------|
+| `enabled` | Enable/disable masking globally | `true` |
+| `failure-strategy` | How to handle masking failures | `FAIL_FAST` |
+
+**Failure Strategies:**
+- `FAIL_FAST`: Throws exception immediately (best for development)
+- `IGNORE`: Logs warning and returns original value (best for production)
+- `REPLACE_WITH_NULL`: Sets field to null to prevent data leaks
 
 ## Custom Maskers
 
