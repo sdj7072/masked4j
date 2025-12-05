@@ -15,7 +15,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   **Enhanced Integration Tests**: Expanded `SampleControllerTest` with comprehensive tests for all masking endpoints including `/test/basic` and `/test/pattern`.
 
 ### Changed
--   **CI Matrix Expansion**: Added JDK 25 to the CI test matrix for future compatibility testing.
 -   **README Updates**: Added Javadoc badge, failure strategy documentation, and configuration property table.
 
 ## [1.1.1] - 2025-11-27
