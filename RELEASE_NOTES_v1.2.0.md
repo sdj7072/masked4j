@@ -34,7 +34,6 @@ Spring Boot auto-configuration now provides a `MaskingEngine` bean with the conf
 
 ## 🔧 Improvements
 
-- **CI Matrix Expansion**: Added JDK 25 to the test matrix for future compatibility
 - **Enhanced Integration Tests**: Comprehensive MockMvc tests for all masking endpoints
 - **Javadoc**: API documentation now available at [javadoc.io](https://javadoc.io/doc/io.github.sdj7072/masked4j-core)
 
